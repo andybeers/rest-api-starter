@@ -7,7 +7,6 @@ const cors = require('cors')
 require('dotenv').config()
 
 const auth = require('./routes/auth')
-const films = require('./routes/films')
 const users = require('./routes/users')
 const ensureAuth = require('./auth/ensure-auth')()
 const errorHandler = require('./routes/error-handler')
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname, '../../app/build')))
 // Routes:
 app.use('/api/auth', auth)
 app.use('/api/users', ensureAuth, users)
-app.use('/api/films', films)
 
 app.all('*', (req, res) => res.status(404).json({ error: 'Page not found' }))
 app.use(errorHandler)
